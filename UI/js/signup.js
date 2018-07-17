@@ -164,8 +164,10 @@ function saveUser (e) {
 
             let token = user.token;
             if(user.data && user.message == 'User registration successful' && token){
-                window.sessionStorage.setItem('token', token);
-                window.location = 'myRide.html';
+                sessionStorage.token = token;
+                sessionStorage.userId = user.data.id;
+                window.location.replace = 'myRide.html'; 
+                alert('User registration successful');
             }
             return user;
         }).catch((err) => {
