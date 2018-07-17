@@ -34,16 +34,17 @@ onload = function(event){
     stopPoint.addEventListener('keyup', function(){
         eStopPoint.innerHTML = '';
     });
-
-    // departureTime.addEventListener('blur', function(){
-    //     if(!departureTime.value){
-    //         eDepartureTime.innerHTML = 'Ride Take off Time is required';
-    //     }
-    // });
-    // departureTime.addEventListener('keyup', function(){
-    //     eDepartureTime.innerHTML = '';
-    // });
 };
+
+const logOut = document.querySelector('#logOut');
+logOut.addEventListener('click', signOut);
+
+function signOut(event) {
+    event.preventDefault();
+    sessionStorage.clear();
+    alert('You have successfully log out. Good Bye!');
+    window.location.replace('index.html');
+}
 
 let rideBtn = document.querySelector('#rideBtn');
 rideBtn.addEventListener('click', saveRide);
