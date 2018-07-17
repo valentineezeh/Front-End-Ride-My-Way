@@ -106,7 +106,7 @@ btn.addEventListener('click', saveUser);
 
 function saveUser (e) {
     e.preventDefault();
-    let error = document.getElementById('error')
+    let error = document.getElementById('error');
     error.innerHTML = '';
 
     const userDetail = {
