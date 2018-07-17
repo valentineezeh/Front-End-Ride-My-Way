@@ -82,15 +82,17 @@ function loginUser (e) {
                     } 
                 }
             }
-            if(user.success == true && user.data && user.message == 'Welcome User You are now Logged In' && user.data.token){
-                window.localStorage.setItem('token', user.data.token);
-                window.location = 'myRide.html';
+            let loginToken = user.data;
+            if(user.success == true && user.data && user.message == 'Welcome User You are now Logged In' && loginToken){
+                sessionStorage.token = loginToken;
+                window.location.href = 'profile.html';
+                alert('Welcome User You are now Logged In')
+                // window.sessionStorage.setItem('token', loginToken);
+                // window.location.href = 'myRide.html';
             }
-            // console.log(user)
-            // var token = user.data.token;
-            // console.log(token);
+            console.log(user)
             
-            // return data
+            return user
         }).catch((err) => {
             return err;
         });
