@@ -20,7 +20,7 @@
       <a href="offerRide.html" class="active">Offer a Ride</a>
       <a href="profile.html">Profile</a>
       <a href="contactUs.html">Contact Us</a>
-      <a id="logOut">Log Out</a>
+      <a href="index.html">Log Out</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
         <i class="fa fa-bars"></i>
       </a>
@@ -29,31 +29,34 @@
         <button>search</button>
       </form> -->
     </div>
-
+    <h3>Offer Ride Form</h3>
     <! Form to Post a Ride.. >
-    <div class="container">  
-      <form id="contact" action="" method="post">
-        <h3>Offer Ride</h3>
-        <h4>Fill in the form details to offer a ride.</h4>
-        <fieldset>
-          <input placeholder="Your name" type="text" tabindex="1" required autofocus>
-        </fieldset>
-        <fieldset>
-          <input placeholder="Destination Starting Point" type="text" tabindex="2" required>
-        </fieldset>
-        <fieldset>
-          <input placeholder="Destination End Point" type="tel" tabindex="3" required>
-        </fieldset>
-        <fieldset>
-          <input placeholder="Departure Time" type="text" tabindex="4" required>
-        </fieldset>
-        <fieldset>
-          <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Create Ride</button>
-        </fieldset>
+    <div class="container">
+      <form>
+        <p id="rideError" style="color: red;"></p>
+        <label >Start Point</label>
+        <input type="text" id="startPoint" placeholder="Destination Starting Point">
+        <p id="eStartPoint" style="color: red;"></p>
+
+        <label >Stop Point</label>
+        <input type="text" id="stopPoint" placeholder="Destination Stopping Point">
+        <p id="eStopPoint" style="color: red;"></p>
+
+        <div class = "time">
+          <label >Departure Time: </label>
+          <input type="time" id="departureTime" placeholder="Destination Time">
+          <p id="eDepartureTime" style="color: red;"></p>
+        </div>
+         <div class="date">
+          <label >Departure Date: </label>
+        <input type="date" id="departureDate" placeholder="Destination Date">
+        <p id="eDepartureDate" style="color: red;"></p>
+         </div>
+   
+         <button type="submit" id="rideBtn" >Create Ride</button>
       </form>
-     
-      
     </div>
+    <script type="text/javascript" src="./js/offerRides.js"></script>
 </body>
 <div class="footer">
   <footer>
