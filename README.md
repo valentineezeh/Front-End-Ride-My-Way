@@ -4,8 +4,9 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/e0beaf954e76afd5de40/maintainability)](https://codeclimate.com/github/valentineezeh/Ride-My-Way/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e0beaf954e76afd5de40/test_coverage)](https://codeclimate.com/github/valentineezeh/Ride-My-Way/test_coverage)
 
-This is a Car Pooling Web Application that connects users who are willing to offer a ride to other users who are going to the same destination. ##
-API Endpoint: https://frozen-mesa-95948.herokuapp.com/api/v1
+This is a Car Pooling Web Application that connects users who are willing to offer a ride to other users who are going to the same destination. 
+
+[Ride My Way API Documentation](https://app.apiary.io/ridemyway12/editor)
 
 # Technologies Used
 - Front-end: Html and css
@@ -21,6 +22,14 @@ API Endpoint: https://frozen-mesa-95948.herokuapp.com/api/v1
 - Authenticated User should be able to get a specific ride
 - Authenticated User should be able to reject or accept a specific ride
 
+# Current limitations
+- This application is still very much a work in progress, and therefore has the following limitations
+
+- Users once signed up cannot delete their account
+- Users cannot edit their account
+- All posted ride offers cannot be deleted
+- All sent ride requests cannot be deleted
+
 ## API Endpoints
 
 | Endpoint                                         | Functionality                      |
@@ -34,7 +43,7 @@ API Endpoint: https://frozen-mesa-95948.herokuapp.com/api/v1
 | GET /users/rides/\<rideId>/requests              | Feth all ride requests             |
 | PUT /users/rides/\<rideId>/requests/\<requestId> | Accept or Reject a ride request    |
 
-[Ride My Way API Documentation](https://app.apiary.io/ridemyway12/editor)
+
 
 # To Install
 - Download or clone
