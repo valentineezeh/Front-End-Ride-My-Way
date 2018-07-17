@@ -1,0 +1,22 @@
+{
+  "name": "front-end-ride-my-way",
+  "version": "1.0.0",
+  "description": "This is a Car Pooling App where users can offer rides and in turn get rides.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valentineezeh/Front-End-Ride-My-Way.git"
+  },
+  "author": "Valentine Ezeh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/valentineezeh/Front-End-Ride-My-Way/issues"
+  },
+  "homepage": "https://github.com/valentineezeh/Front-End-Ride-My-Way#readme",
+  "dependencies": {
+    "eslint": "^5.1.0"
+  }
+}
