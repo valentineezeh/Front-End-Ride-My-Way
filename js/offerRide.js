@@ -9,7 +9,15 @@ const eDepartureTime = document.getElementById('eDepartureTime');
 const departureDate = document.getElementById('departureDate');
 const eDepartureDate = document.getElementById('eDepartureDate');
 
-const logOut = document.getElementById('logOut');
+const logOut = document.querySelector('#logOut');
+logOut.addEventListener('click', signOut);
+
+function signOut(event) {
+    event.preventDefault();
+    sessionStorage.clear();
+    alert('You have successfully log out. Good Bye!');
+    window.location.replace('index.html');
+}
 
 onload = function(event){
     event.preventDefault();
@@ -110,8 +118,4 @@ function saveRide(e){
         });
 }
 
-logOut.addEventListener('click', (event) => {
-    event.preventDefault();
-    sessionStorage.clear();
-    window.location.replace('index.html');
-});
+
