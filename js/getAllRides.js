@@ -22,12 +22,44 @@ const rideHeader = {
     }
 };
 
+const requestHeader = {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        Accept: 'application/json, text/plain, /',
+        'Content-type': 'application/json; charset=utf-8',
+        authorization: sessionStorage.token,   
+    }
+};
+
+function joinRide(url){
+    fetch(url, requestHeader)
+        .then(response => response.json())
+        .then(request => {
+            const{success} = request;
+            if(success === false){
+                alert(request.message);
+            }
+            if(success === true && request.message === 'Ride Request has been posted.'){
+                alert('Ride Request has been posted.');
+                window.location.replace = 'index.html';   
+            }
+            return request;
+        })
+        .catch(error => {
+            if(error.message === 'You do not have permission to this page.'){
+                alert('You do not have permission to this page.');
+                window.location.href = 'index.html';
+            }
+            return error;
+        });
+}
 
 function getRideRequest(url) {
     fetch(url, rideHeader)
         .then(response => response.json())
-        .then(ride => { 
-                    
+        .then(ride => {
             let viewOutput = '';
 
             viewOutput = `
@@ -58,14 +90,9 @@ function getRideRequest(url) {
                     <td>${ride.ride.departuredate}</td>
                   </tr>
                     </table>
-                    <div style="text-align: center; content: '' ; clear: both; display: flex; justify-content: center; ">
-                    <button style="background-color: green; color: white; padding: 10px 22px; margin: 9px 0; border: none; cursor: pointer; width: auto">Join</button>
-                    </div>
-                    </div>
+                    <button style="background-color: green; color: white; padding: 10px 22px; margin: 9px 0; border: none; cursor: pointer; margin-left: 40%;" onclick="joinRide('https://frozen-mesa-95948.herokuapp.com/api/v1/rides/${ride.ride.id}/requests')">Join</button>
                     
                     `;
-            // console.log(viewOutput);
-            //console.log(ride.ride.id)
             document.getElementById('id02').style.display = 'block';
                     
             document.getElementById('id02').innerHTML = viewOutput; // This is the one giving mr undefined
@@ -73,8 +100,6 @@ function getRideRequest(url) {
         
         .catch(error => console.error(error));
 }
- 
-
 
 const fetchAllRides = {
     method: 'GET',
@@ -121,8 +146,6 @@ fetch(allRidesUrl, fetchAllRides)
             </div>
             `;                     
         });
-             
-        
-        
         document.getElementById('allRides').innerHTML = rideOutput;
     });
+
