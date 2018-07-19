@@ -116,4 +116,5 @@ function saveRide(e){
         }).catch((err) => {
             return err;
         });
+    document.getElementById('rideForm').reset();
 }
