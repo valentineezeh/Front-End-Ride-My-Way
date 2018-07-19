@@ -22,23 +22,49 @@ const rideHeader = {
     }
 };
 
+const requestHeader = {
+    method: 'POST',
+    mode: 'cors',
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        Accept: 'application/json, text/plain, /',
+        'Content-type': 'application/json; charset=utf-8',
+        authorization: sessionStorage.token,   
+    }
+};
 
-  
-    //console.log(rideOutput);
-    // const rideUrl = `https://frozen-mesa-95948.herokuapp.com/api/v1/rides/${rideId}`;
+function joinRide(url){
+    console.log('play');
+    fetch(url, requestHeader)
+        .then(response => response.json())
+        .then(request => {
+            const{success} = request;
+            if(success === false){
+                alert(request.message);
+            }
+            if(success === true && request.message === 'Ride Request has been posted.'){
+                alert('Ride Request has been posted.');
+                window.location.replace = 'index.html';   
+            }
+            return request;
+        })
+        .catch(error => {
+            if(error.message === 'You do not have permission to this page.'){
+                alert('You do not have permission to this page.');
+                window.location.href = 'index.html';
+            }
+            return error;
+        });
+}
 
 function getRideRequest(url) {
     fetch(url, rideHeader)
         .then(response => response.json())
         .then(ride => {
             console.log('ride', ride); // Prints result from `response.json()` in getRequest
-                    
+            console.log(ride.ride.id);
             let viewOutput = '';
-            //console.log(ride.ride.id);
-                    
-            // for (const [key] of Object.entries(rideList)){
-                        
-            // if(rideList[key].id === rideId){
+
             viewOutput = `
                     <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                     <div style="overflow-x:auto; background-color: white; padding: 20px; width: 60%; margin: 0 auto;">
@@ -67,13 +93,10 @@ function getRideRequest(url) {
                     <td>${ride.ride.departuredate}</td>
                   </tr>
                     </table>
-                    <div style="text-align: center; content: '' ; clear: both; display: flex; justify-content: center; ">
-                    <button style="background-color: green; color: white; padding: 10px 22px; margin: 9px 0; border: none; cursor: pointer; width: auto">Join</button>
-                    </div>
-                    </div>
+                    <button style="background-color: green; color: white; padding: 10px 22px; margin: 9px 0; border: none; cursor: pointer; margin-left: 40%;" onclick="joinRide('https://frozen-mesa-95948.herokuapp.com/api/v1/rides/${ride.ride.id}/requests')">Join</button>
                     
                     `;
-            // console.log(viewOutput);
+            console.log(viewOutput);
             //console.log(ride.ride.id)
             document.getElementById('id02').style.display = 'block';
                     
@@ -82,7 +105,8 @@ function getRideRequest(url) {
         
         .catch(error => console.error(error));
 }
- 
+
+//console.log("meme")
 
 
 const fetchAllRides = {
@@ -130,47 +154,5 @@ fetch(allRidesUrl, fetchAllRides)
             </div>
             `;                     
         });
-             
-        
-        
         document.getElementById('allRides').innerHTML = rideOutput;
     });
-
-
-
-                
-//     let rideId = ride.id;
-//     console.log(rideId);
-//     requestUrl = `https://frozen-mesa-95948.herokuapp.com/api/v1/rides/${rideId}/requests`;
-
-//     function saveRequest(e){
-//         e.preventDefault();
-//         console.log('====> meme');
-//         const postData = {
-//             method: 'POST',
-//             mode: 'cors',
-//             headers: {
-//                 'Access-Control-Allow-Origin': '*',
-//                 Accept: 'application/json, text/plain, /',
-//                 'Content-type': 'application/json; charset=utf-8',
-//                 authorization: sessionStorage.token,
-//             }
-//         };
-//         console.log('====> meme');
-//         fetch(requestUrl, postData)
-//             .then((res) => {
-//                 console.log(res);
-//                 return res.json();
-//             })
-//             .then((request) => {
-//                 console.log(request);
-//                 return request;
-//             })
-//             .catch((err) => {
-//                 console.log(err);
-//                 return err;
-//             });
-//     }
-            
-//     const request = document.getElementById('request');
-//     request.addEventListener('click', saveRequest);
