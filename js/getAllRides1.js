@@ -1,7 +1,5 @@
 const allRiidesUrl = 'https://frozen-mesa-95948.herokuapp.com/api/v1/rides';
 
-// const allRides = document.getElementById('allRides');
-
 const fetchAllRides = {
     method: 'GET',
     mode: 'cors',
@@ -17,7 +15,6 @@ fetch(allRiidesUrl, fetchAllRides)
     .then((res) => res.json())
     .then((rides) => {
         let rideOutput = '';
-        console.log(rides.rides);
         rides.rides.map(ride => {
             rideOutput += `
             <div class="column">

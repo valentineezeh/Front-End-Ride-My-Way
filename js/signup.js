@@ -166,7 +166,7 @@ function saveUser (e) {
             if(user.data && user.message == 'User registration successful' && token){
                 sessionStorage.token = token;
                 sessionStorage.userId = user.data.id;
-                window.location.replace = 'myRide.html'; 
+                window.location.href = 'allRides.html'; 
                 alert('User registration successful');
             }
             return user;

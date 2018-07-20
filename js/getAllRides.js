@@ -95,7 +95,7 @@ function getRideRequest(url) {
                     `;
             document.getElementById('id02').style.display = 'block';
                     
-            document.getElementById('id02').innerHTML = viewOutput; // This is the one giving mr undefined
+            document.getElementById('id02').innerHTML = viewOutput; 
         })
         
         .catch(error => console.error(error));

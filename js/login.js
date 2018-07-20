@@ -85,7 +85,7 @@ function loginUser (e) {
             let loginToken = user.data;
             if(user.success == true && user.data && user.message == 'Welcome User You are now Logged In' && loginToken){
                 sessionStorage.token = loginToken;
-                window.location.href = 'profile.html';
+                window.location.href = 'allRides.html';
                 alert('Welcome User You are now Logged In');
             }            
             return user;

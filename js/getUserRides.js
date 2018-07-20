@@ -10,11 +10,6 @@ function signOut(event) {
     window.location.replace('index.html');
 }
 
-// let acceptBtn = document.querySelector('#accept');
-// acceptBtn.addEventListener('click', addRespond);
-
-
-
 function addRespond(url){
     
     const post = {
@@ -39,7 +34,6 @@ function addRespond(url){
             if(success == false){
                 alert('Ride does not exist or has already been responded to.');
             }else{
-                console.log(data);
                 alert('Ride Accepted.');
                 window.location.href = 'allRides.html';
                 return data;
@@ -71,13 +65,14 @@ function rejectResponse(url){
             if(success == false){
                 alert('Ride does not exist or has already been responded to.');
             }else{
-                console.log(data);
                 alert('Ride Rejected.');
                 window.location.href = 'allRides.html';
                 return data;
             }
             
-        }).catch((error) => console.log(error));
+        }).catch((error) => {
+            return error;
+        });
 }
 
 const allRequestHeader = {
@@ -95,7 +90,6 @@ function getAllRequest(url){
     fetch(url, allRequestHeader)
         .then(response => response.json())
         .then((requests) => {
-            console.log(requests);
             let requestOutput = '';
             if(requests.message === 'You do not have permission to this page.'){
                 alert('You do not have permission to this page. Please Login or Sign Up');
@@ -106,7 +100,6 @@ function getAllRequest(url){
                 
             }
             requests.requests.map((request) => {
-                console.log(request);
                 requestOutput += `
                 <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
                 <div style="overflow-x:auto; background-color: white; padding: 20px; width: 60%; margin: 0 auto;">
@@ -150,7 +143,6 @@ const fetchUserRides = {
 fetch(userRidesUrl, fetchUserRides)
     .then((res) => res.json())
     .then((rides) => {
-        console.log(rides)
         let userRidesOutput = '';
         if(rides.message === 'You do not have permission to this page.'){
             alert('You do not have permission to this page. Please Login or Sign Up');
