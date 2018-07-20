@@ -32,7 +32,7 @@ function getAllRequest(url){
                 window.location.href = 'index.html';
             }
             if(requests.message === 'No ride request found.'){
-                alert('This ride has not yet been requested for.');
+                alert('This ride has not yet been requested for.')
                 
             }
             requests.requests.map((request) => {
