@@ -44,7 +44,7 @@ function joinRide(url){
             }
             if(success === true && request.message === 'Ride Request has been posted.'){
                 alert('Ride Request has been posted.');
-                window.location.replace = 'index.html';   
+                window.location.href = 'allRides.html';   
             }
             return request;
         })
