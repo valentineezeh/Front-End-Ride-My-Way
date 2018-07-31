@@ -88,7 +88,7 @@ function getRideRequest(url) {
                   </tr>
                   <tr>
                     <td>Departure Date</td>
-                    <td>${ride.ride.departuredate}</td>
+                    <td>${moment(ride.ride.departuredate).format('MMMM-DD-YY')}</td>
                   </tr>
                     </table>
                     <button style="background-color: green; color: white; padding: 10px 22px; margin: 9px 0; border: none; cursor: pointer; margin-left: 40%;" onclick="joinRide('https://frozen-mesa-95948.herokuapp.com/api/v1/rides/${ride.ride.id}/requests')">Join</button>
@@ -137,7 +137,7 @@ fetch(allRidesUrl, fetchAllRides)
             </p>
             <p>${ride.stoppoint}</p>
             <p>Departure Time: ${ride.departuretime}</p>
-            <p>Departure Date: ${ride.departuredate}</p>
+            <p>Departure Date: ${moment(ride.departuredate).format('MMMM-DD-YY')}</p>
             <div style="text-align: center; content: '' ; clear: both; display: flex; justify-content: center; ">
             <button class="button" href ='${ride.id}' aria-controls='${ride.id}' style="border: none; display: inline-block; padding: '8px'; background-color: #000; text-align: center; cusor: pointer; width: 100%; margin-bottom: 20%"  onclick="getRideRequest('https://frozen-mesa-95948.herokuapp.com/api/v1/rides/${ride.id}')"> View Details</button>
             </div> 

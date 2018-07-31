@@ -171,7 +171,7 @@ fetch(userRidesUrl, fetchUserRides)
             <p class="title">To: Destination Stop Point</p>
             <p>${rides.stoppoint}</p>
             <p>Departure Time: ${rides.departuretime}</p>
-            <p>Departure Date: ${rides.departuredate}</p>
+            <p>Departure Date: ${moment(rides.departuredate).format('MMMM-DD-YY')}</p>
             <button class="button" style="border: none; display: inline-block; padding: '8px'; background-color: #000; text-align: center; cusor: pointer; width: 100%; margin-bottom: 20%"  onclick="getAllRequest('https://frozen-mesa-95948.herokuapp.com/api/v1/users/rides/${rides.id}/requests')"> View Request</button>
             </div>
             </div>
