@@ -10,11 +10,6 @@ function signOut(event) {
     window.location.replace('index.html');
 }
 
-// let acceptBtn = document.querySelector('#accept');
-// acceptBtn.addEventListener('click', addRespond);
-
-
-
 function addRespond(url){
     
     const post = {
@@ -39,7 +34,6 @@ function addRespond(url){
             if(success == false){
                 alert('Ride does not exist or has already been responded to.');
             }else{
-                console.log(data);
                 alert('Ride Accepted.');
                 window.location.href = 'allRides.html';
                 return data;
@@ -71,13 +65,14 @@ function rejectResponse(url){
             if(success == false){
                 alert('Ride does not exist or has already been responded to.');
             }else{
-                console.log(data);
                 alert('Ride Rejected.');
                 window.location.href = 'allRides.html';
                 return data;
             }
             
-        }).catch((error) => console.log(error));
+        }).catch((error) => {
+            return error;
+        });
 }
 
 const allRequestHeader = {
@@ -95,7 +90,6 @@ function getAllRequest(url){
     fetch(url, allRequestHeader)
         .then(response => response.json())
         .then((requests) => {
-            console.log(requests);
             let requestOutput = '';
             if(requests.message === 'You do not have permission to this page.'){
                 alert('You do not have permission to this page. Please Login or Sign Up');
@@ -105,34 +99,32 @@ function getAllRequest(url){
                 alert('This ride has not yet been requested for.');
                 
             }
+            let rideRequest = `
+            <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <div style="overflow-x:auto; background-color: white; padding: 20px; width: 60%; margin: 0 auto;">
+            <table style="width: 100%;">
+            <h1>Rides Request</h1>
+            <thead id="requestTable"></thead>
+            </table>
+            </div>
+            `; 
             requests.requests.map((request) => {
-                console.log(request);
                 requestOutput += `
-                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <div style="overflow-x:auto; background-color: white; padding: 20px; width: 60%; margin: 0 auto;">
-                <table style="width: 100%;">
-                <h1>Request</h1>
-                <thead>
-                <tr>
-                <th> Rides Request </th>
-                <th> Actions</th>
-                </tr>
-                </thead>
-                <tr>
+            <tr style="overflow-x:auto;">
                 <td> ${request.lastname} ${request.firstname}</td>
                 <td style="padding-left: 20px; "><div style="text-align: center; content: '' ; clear: both; display: flex; justify-content: center; ">
                 <button onclick="addRespond('https://frozen-mesa-95948.herokuapp.com/api/v1/users/rides/${request.rideid}/requests/${request.requestid}')" style="background-color: green; color: white; padding: 10px 22px; margin: 9px 0; border: none; cursor: pointer; width: auto">Accept</button>
                 &nbsp;
                 <button onclick="rejectResponse('https://frozen-mesa-95948.herokuapp.com/api/v1/users/rides/${request.rideid}/requests/${request.requestid}')" style="background-color: #f44336; color: white; padding: 10px 22px; margin: 9px 0; border: none; cursor: pointer; width: auto;">Reject</button>
-                </div>
-                </div>
                 </td>
                 </tr>
-                </div>
+                
                 `;
                 document.getElementById('id02').style.display = 'block';
-                document.getElementById('id02').innerHTML = requestOutput;
+                
+                document.getElementById('id02').innerHTML = rideRequest;
             });
+            document.getElementById('requestTable').innerHTML = requestOutput;
         });
 }
 
@@ -155,6 +147,10 @@ fetch(userRidesUrl, fetchUserRides)
             alert('You do not have permission to this page. Please Login or Sign Up');
             window.location.href = 'index.html';
         }
+        if(rides.message === 'You are yet to create a ride.'){
+            alert('You are yet to create a ride. Please Create a Ride');
+            window.location.href = 'offerRide.html';
+        }
         rides.ride.map(rides => {
             userRidesOutput += `
             <div class="column">
@@ -168,7 +164,7 @@ fetch(userRidesUrl, fetchUserRides)
             <p class="title">To: Destination Stop Point</p>
             <p>${rides.stoppoint}</p>
             <p>Departure Time: ${rides.departuretime}</p>
-            <p>Departure Date: ${rides.departuredate}</p>
+            <p>Departure Date: ${moment(rides.departuredate).format('MMMM-DD-YY')}</p>
             <button class="button" style="border: none; display: inline-block; padding: '8px'; background-color: #000; text-align: center; cusor: pointer; width: 100%; margin-bottom: 20%"  onclick="getAllRequest('https://frozen-mesa-95948.herokuapp.com/api/v1/users/rides/${rides.id}/requests')"> View Request</button>
             </div>
             </div>
