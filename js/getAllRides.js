@@ -40,6 +40,7 @@ function joinRide(url){
             const{success} = request;
             if(success === false){
                 alert(request.message);
+                window.location.href = 'allRides.html';
             }
             if(success === true && request.message === 'Ride Request has been posted.'){
                 alert('Ride Request has been posted.');

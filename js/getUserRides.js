@@ -99,33 +99,39 @@ function getAllRequest(url){
                 alert('This ride has not yet been requested for.');
                 
             }
+            let rideRequest = `
+            <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <div style="overflow-x:auto; background-color: white; padding: 20px; width: 60%; margin: 0 auto;">
+            <table style="width: 100%;">
+            <h1>Rides Request</h1>
+            <thead id="requestTable">
+            
+            
+            </thead>
+            
+            </table>
+            </div>
+            ` 
             requests.requests.map((request) => {
                 requestOutput += `
-                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
-                <div style="overflow-x:auto; background-color: white; padding: 20px; width: 60%; margin: 0 auto;">
-                <table style="width: 100%;">
-                <h1>Request</h1>
-                <thead>
-                <tr>
-                <th> Rides Request </th>
-                <th> Actions</th>
-                </tr>
-                </thead>
-                <tr>
+            <tr style="overflow-x:auto;">
+                
+            
+                
                 <td> ${request.lastname} ${request.firstname}</td>
                 <td style="padding-left: 20px; "><div style="text-align: center; content: '' ; clear: both; display: flex; justify-content: center; ">
                 <button onclick="addRespond('https://frozen-mesa-95948.herokuapp.com/api/v1/users/rides/${request.rideid}/requests/${request.requestid}')" style="background-color: green; color: white; padding: 10px 22px; margin: 9px 0; border: none; cursor: pointer; width: auto">Accept</button>
                 &nbsp;
                 <button onclick="rejectResponse('https://frozen-mesa-95948.herokuapp.com/api/v1/users/rides/${request.rideid}/requests/${request.requestid}')" style="background-color: #f44336; color: white; padding: 10px 22px; margin: 9px 0; border: none; cursor: pointer; width: auto;">Reject</button>
-                </div>
-                </div>
                 </td>
                 </tr>
-                </div>
+                
                 `;
                 document.getElementById('id02').style.display = 'block';
-                document.getElementById('id02').innerHTML = requestOutput;
+                
+                document.getElementById('id02').innerHTML = rideRequest;
             });
+            document.getElementById('requestTable').innerHTML = requestOutput;
         });
 }
 
